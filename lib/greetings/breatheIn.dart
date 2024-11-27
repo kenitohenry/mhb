@@ -1,4 +1,6 @@
+import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
+import 'package:mhb/chat/chat.dart';
 import 'dart:async';
 //import 'package:media_kit/media_kit.dart';
 
@@ -12,12 +14,14 @@ class BreatheIn extends StatefulWidget {
 }
 
 class _BreatheInState extends State<BreatheIn> {
-//  late final player = Player();
+  bool playedExcersies = false;
 
   void initState() {
     super.initState();
+    final player = AudioPlayer();
+    player.play(AssetSource('breatheInBreatheOut.m4a'));
+
     // Play a [Media] or [Playlist].
-//    player.open(Media('assets/breatheInBreatheOut.m4a'));
   }
 
   @override
@@ -30,31 +34,68 @@ class _BreatheInState extends State<BreatheIn> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Breathing excersing"),
+        title: const Text("Breathing exercises"),
       ),
-      body: Column(children: [
-        const Text("let's Breathe together"),
-        const SizedBox(height: 20),
-        const Text(
-          'Hold for seconds...',
-          style: TextStyle(
-            fontSize: 18,
-            color: Color.fromARGB(255, 20, 249, 226),
-          ),
-        ),
-        const SizedBox(height: 50),
-        ElevatedButton(
-          onPressed: onPressed,
-          style: ElevatedButton.styleFrom(
-              foregroundColor: const Color.fromARGB(255, 82, 235, 123)),
-          child: Text('Start Breathing Exercise'),
-          // padding: EdgeInsets.symmetric(horizontal: 30, vertical: 15),
-          //    textStyle: TextStyle(fontSize: 18),
-        ),
-      ]),
+      body: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: [
+            Center(
+                child: const Text(
+              "Let's Breathe together",
+              style: TextStyle(color: Colors.white, fontSize: 25),
+            )),
+            const SizedBox(height: 20),
+            !playedExcersies
+                ? ElevatedButton(
+                    onPressed: startBreathingexcersise,
+                    style: ElevatedButton.styleFrom(
+                        foregroundColor:
+                            const Color.fromARGB(211, 81, 171, 227)),
+                    child: Text('Start Breathing Exercise'),
+                  )
+                : Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      ElevatedButton(
+                        onPressed: startBreathingexcersise,
+                        style: ElevatedButton.styleFrom(
+                            foregroundColor:
+                                const Color.fromARGB(211, 81, 171, 227)),
+                        child: Text('Play Again'),
+                      ),
+                      ElevatedButton(
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (context) => ChatUI()),
+                          );
+                        },
+                        style: ElevatedButton.styleFrom(
+                            foregroundColor:
+                                const Color.fromARGB(210, 81, 227, 159)),
+                        child: Text('Talk to a companion'),
+                      )
+                    ],
+                  ),
+          ]),
       backgroundColor: const Color.fromARGB(211, 81, 171, 227),
     );
   }
 
   void onPressed() {}
+
+  void startBreathingexcersise() {
+    final player = AudioPlayer();
+    player.play(AssetSource('breathingExcersise2.m4a')).then(
+      (value) {
+        if (playedExcersies == false) {
+          setState(() {
+            playedExcersies = !playedExcersies;
+          });
+        }
+      },
+    );
+  }
 }

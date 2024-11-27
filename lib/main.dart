@@ -138,26 +138,38 @@ class _TextInputScreenState extends State<TextInputScreen> {
           ),
           const SizedBox(height: 20),
           Container(
-            child: Row(children: [
-              ElevatedButton(
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => const Greetings()),
-                  );
-                },
-                child: const Text('Sign In '),
-              ),
-              ElevatedButton(
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => const Greetings()),
-                  );
-                },
-                child: const Text('Sign Up'),
-              ),
-            ]),
+            child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  ElevatedButton(
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const Greetings()),
+                      );
+                    },
+                    child: const Text('Sign In '),
+                  ),
+                  const SizedBox(height: 40),
+                  ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: const Color.fromARGB(255, 76, 124, 175),
+                    ),
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const Greetings()),
+                      );
+                    },
+                    child: const Text(
+                      'Sign Up',
+                      style:
+                          TextStyle(color: Color.fromARGB(217, 255, 255, 255)),
+                    ),
+                  ),
+                ]),
           ),
           const SizedBox(height: 20),
         ],

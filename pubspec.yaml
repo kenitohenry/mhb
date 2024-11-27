@@ -1,5 +1,5 @@
 name: mhb
-description: "A new Flutter project."
+description: "A Mental Health Companion."
 # The following line prevents the package from being accidentally published to
 # pub.dev using `flutter pub publish`. This is preferred for private packages.
 publish_to: 'none' # Remove this line if you wish to publish to pub.dev
@@ -36,6 +36,7 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.8
   provider: ^6.1.2
+  audioplayers: ^6.1.0
  
 
 dev_dependencies:
@@ -91,5 +92,4 @@ flutter:
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/to/font-from-package
   assets:
-    - assets/splash_image.png
-    - assets/breatheInBreatheOut.m4a
+    - assets/
