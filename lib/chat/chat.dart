@@ -130,6 +130,9 @@ class _ChatUIState extends State<ChatUI> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: Text("Chat Companion"),
+      ),
       body: Stack(
         children: <Widget>[
           SizedBox(
